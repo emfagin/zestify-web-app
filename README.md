@@ -10,4 +10,4 @@ Course/Section: WEB322/NEE
 
 ## Project URLs
 GitHub Repo   : https://github.com/emfagin/WEB322-efagin
-Cyclic URL    : https://<app_name>.cyclic.app/
+Cyclic URL    : https://web322-zestify.cyclic.app/
