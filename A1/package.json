@@ -1,0 +1,21 @@
+{
+  "name": "assignment1",
+  "version": "1.0.0",
+  "description": "WEB322NEE Assignment 1, creating meal-kit website from scratch, setting up express server and node.js modules, using vanilla html & css.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Express-server",
+    "node.js-modules",
+    "meal-kit-website",
+    "vanilla-html-css"
+  ],
+  "author": "Emily Fagin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
