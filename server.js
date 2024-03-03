@@ -24,11 +24,15 @@ app.set('view engine', 'ejs');
 app.set("layout", "layouts/main"); // automatically searches /views
 app.use(expressLayouts);
 
-// Load controllers into express
+// Set up body-parser
+app.use(express.urlencoded({extended : false}));
+
+// Configure/set-up controllers
 const generalController = require("./controllers/generalController");
 const mealkitController = require("./controllers/mealkitController");
 const accountController = require("./controllers/accountController");
 
+// Load controllers into express
 app.use('/', generalController);
 app.use('/on-the-menu', mealkitController);
 app.use('/account', accountController);

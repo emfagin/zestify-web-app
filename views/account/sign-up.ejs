@@ -3,27 +3,43 @@
         <div class="col-md-6 card">
             <div class="card-body">
                 <h2 class="card-title text-center">Sign Up</h2>
-                <form>
+                <form method="post" action="/account/sign-up">
 
                     <div class="mb-3"> <!--First Name-->
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="John">
+                        <label for="firstName" class="form-label"><span class="text-danger">*</span>First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" value="<%= values.firstName %>">
                     </div>
+
+                    <% if (validationMessages.firstName) { %> <!-- First Name Error Message -->
+                        <div class="mb-3 text-danger" id="errorMessage"> <%= validationMessages.firstName %> </div>
+                    <% } %>
 
                     <div class="mb-3"> <!--Last Name-->
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Smith">
+                        <label for="lastName" class="form-label"><span class="text-danger">*</span>Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" value="<%= values.lastName %>">
                     </div>
+
+                    <% if (validationMessages.lastName) { %> <!-- Last Name Error Message -->
+                        <div class="mb-3 text-danger" id="errorMessage"> <%= validationMessages.lastName %> </div>
+                    <% } %>
 
                     <div class="mb-3"> <!--Email-->
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+                        <label for="email" class="form-label"><span class="text-danger">*</span>Email</label>
+                        <input type="text" class="form-control" id="email" name="email" value="<%= values.email %>">
                     </div>
 
+                    <% if (validationMessages.email) { %> <!-- Email Error Message -->
+                        <div class="mb-3 text-danger" id="errorMessage"> <%= validationMessages.email %> </div>
+                    <% } %>
+
                     <div class="mb-3"> <!--Password-->
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="...............">
+                        <label for="password" class="form-label"><span class="text-danger">*</span>Password</label>
+                        <input type="text" class="form-control" id="password" name="password">
                     </div>
+
+                    <% if (validationMessages.password) { %> <!-- Password Error Message -->
+                        <div class="mb-3 text-danger" id="errorMessage"> <%= validationMessages.password %> </div>
+                    <% } %>
 
                     <!--Submission Button-->
                     <button type="submit" class="btn submit-info w-100">Sign Up Now!</button>
