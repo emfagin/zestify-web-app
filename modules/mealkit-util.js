@@ -102,7 +102,6 @@ module.exports.getFeaturedMealKits = function (mealkits){
             featured.push(mk);
         }
     });
-    console.log(featured);
     return featured;
 }
 
