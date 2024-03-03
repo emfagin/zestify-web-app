@@ -7,7 +7,7 @@ mealkits = [
         price: 34.99,
         cookingTime: 190,
         servings: 3,
-        imageUrl: "/mealkit-imgs/burrito-dish.png",
+        imageUrl: "burrito-dish.png",
         featuredMealKit: false
     },
     {
@@ -18,7 +18,7 @@ mealkits = [
         price: 28.99,
         cookingTime: 20,
         servings: 2,
-        imageUrl: "/mealkit-imgs/eggs-beni.jpg",
+        imageUrl: "eggs-beni.jpg",
         featuredMealKit: true
     },
     {
@@ -29,7 +29,7 @@ mealkits = [
         price: 22.99,
         cookingTime: 35,
         servings: 2,
-        imageUrl: "/mealkit-imgs/hamburger.jpg",
+        imageUrl: "hamburger.jpg",
         featuredMealKit: true
     },
     {
@@ -40,7 +40,7 @@ mealkits = [
         price: 40.99,
         cookingTime: 70,
         servings: 4,
-        imageUrl: "/mealkit-imgs/lampredotto.jpg",
+        imageUrl: "lampredotto.jpg",
         featuredMealKit: false
     },
     {
@@ -51,7 +51,7 @@ mealkits = [
         price: 19.99,
         cookingTime: 20,
         servings: 2,
-        imageUrl: "/mealkit-imgs/pad-thai.jpg",
+        imageUrl: "pad-thai.jpg",
         featuredMealKit: true
     },
     {
@@ -62,7 +62,7 @@ mealkits = [
         price: 20.99,
         cookingTime: 30,
         servings: 3,
-        imageUrl: "/mealkit-imgs/pizza.jpg",
+        imageUrl: "pizza.jpg",
         featuredMealKit: false
     },
     {
@@ -73,7 +73,7 @@ mealkits = [
         price: 24.99,
         cookingTime: 35,
         servings: 2,
-        imageUrl: "/mealkit-imgs/ramen-dish.jpg",
+        imageUrl: "ramen-dish.jpg",
         featuredMealKit: true
     },
     {
@@ -84,7 +84,7 @@ mealkits = [
         price: 19.99,
         cookingTime: 20,
         servings: 2,
-        imageUrl: "/mealkit-imgs/tofu-salad.jpg",
+        imageUrl: "tofu-salad.jpg",
         featuredMealKit: false
     },
 ]

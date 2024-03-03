@@ -13,35 +13,25 @@ const path = require("path");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 
+// Set up express
 const app = express();
-const mealkitUtil = require("./modules/mealkit-util");
 
+// Set up public folder - make "/assets" public
 app.use(express.static(path.join(__dirname, "/assets"))); // Make assets folder static (or public), accessible
+
+// Set up EJS
 app.set('view engine', 'ejs');
 app.set("layout", "layouts/main"); // automatically searches /views
 app.use(expressLayouts);
 
-app.get("/", (req, res) => {
-    res.render("home", {
-        featuredMealkits : mealkitUtil.getFeaturedMealKits(mealkitUtil.getAllMealKits()),
-        title: "Home"
-    });
-});
+// Load controllers into express
+const generalController = require("./controllers/generalController");
+const mealkitController = require("./controllers/mealkitController");
+const accountController = require("./controllers/accountController");
 
-app.get("/on-the-menu", (req, res) =>{
-    res.render("on-the-menu", {
-        categories: mealkitUtil.getMealKitsByCategory(mealkitUtil.getAllMealKits()),
-        title: "On The Menu"
-    });
-});
-
-app.get("/sign-up", (req, res) => {
-    res.render("sign-up", {title: "Sign Up"});
-});
-
-app.get("/log-in", (req, res) => {
-    res.render("log-in", {title: "Log In"});
-});
+app.use('/', generalController);
+app.use('/on-the-menu', mealkitController);
+app.use('/account', accountController);
 
 app.use((req, res) => {
     res.status(404).send("Page Not Found");
