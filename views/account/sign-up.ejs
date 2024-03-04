@@ -43,6 +43,11 @@
 
                     <!--Submission Button-->
                     <button type="submit" class="btn submit-info w-100">Sign Up Now!</button>
+                    
+                    <% if (validationMessages.sendEmail) { %> <!-- Sending Email Error Message -->
+                        <div class="mb-3 text-danger" id="errorMessage"> <%= validationMessages.sendEmail %> </div>
+                    <% } %>
+
                 </form>
             </div>
         </div>

@@ -13,6 +13,10 @@ const path = require("path");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 
+// Set up dotenv
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config/keys.env" })
+
 // Set up express
 const app = express();
 
