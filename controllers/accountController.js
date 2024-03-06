@@ -6,7 +6,7 @@ const sgMail = require("@sendgrid/mail");
 router.get("/welcome", (req, res) => {
     res.render("account/welcome", 
         {title: "Welcome",
-        name: req.query.name || "Nobody"});
+        name: req.query.name });
 })
 
 router.get("/sign-up", (req, res) => {
@@ -35,7 +35,7 @@ router.post("/sign-up", (req, res) => {
             to: email,
             from: "emilyfagin200@gmail.com",
             subject: "Welcome to Zestify!",
-            html: `Hi there ${firstName} ${lastName}, welcome to Zestify, from me`
+            html: `<h2 style="color:blue;">Hi ${firstName} ${lastName}!</h2><h3>Welcome to Zestify - my WEB322 Assignment.</h3>From me - Emily Fagin`
         };
 
         sgMail.send(msg)
