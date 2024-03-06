@@ -4,7 +4,9 @@ const validation = require("../modules/validation");
 const sgMail = require("@sendgrid/mail");
 
 router.get("/welcome", (req, res) => {
-    res.render("account/welcome", {title: "Welcome"});
+    res.render("account/welcome", 
+        {title: "Welcome",
+        name: req.query.name || "Nobody"});
 })
 
 router.get("/sign-up", (req, res) => {
@@ -31,19 +33,16 @@ router.post("/sign-up", (req, res) => {
         
         const msg = {
             to: email,
-            from: "efagin@myseneca.ca",
+            from: "emilyfagin200@gmail.com",
             subject: "Welcome to Zestify!",
             html: `Hi there ${firstName} ${lastName}, welcome to Zestify, from me`
         };
 
-        console.log(msg);
-
         sgMail.send(msg)
             .then(() => {
-                res.render("account/welcome", 
-                {title: "Welcome",
-                user: {firstName: firstName,
-                    lastName: lastName}}); 
+                const queryString = "?name=" + firstName;
+                console.log(queryString);
+                res.redirect("/welcome" + queryString); 
             })
             .catch(err => {
                 console.log(err);

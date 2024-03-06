@@ -38,8 +38,8 @@ const accountController = require("./controllers/accountController");
 
 // Load controllers into express
 app.use('/', generalController);
-app.use('/on-the-menu', mealkitController);
-app.use('/account', accountController);
+app.use('/', mealkitController);
+app.use('/', accountController);
 
 app.use((req, res) => {
     res.status(404).send("Page Not Found");
