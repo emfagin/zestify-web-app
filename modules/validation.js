@@ -48,5 +48,12 @@ function isInvalidPassword(value){
     return response;
 }
 
-
 module.exports = {isInvalidEmail, isInvalidPassword, isInvalidText};
+
+
+
+
+
+/**
+ * bcrypt
+ */

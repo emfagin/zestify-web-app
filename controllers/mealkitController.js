@@ -13,10 +13,18 @@ const express = require("express");
 const mealkitUtil = require("../modules/mealkit-util");
 const router = express.Router();
 
-router.get("/on-the-menu", (req, res) =>{
+// Mealkits get route (/mealkits) - for customers.
+router.get("/", (req, res) =>{
     res.render("mealkits/on-the-menu", {
         categories: mealkitUtil.getMealKitsByCategory(mealkitUtil.getAllMealKits()),
         title: "On The Menu"
+    });
+});
+
+// Mealkit-list get route (/mealkits/list) - for clerks only.
+router.get("/list", (req, res) =>{ // list mealkits 
+    res.render("mealkits/list", {
+        title: "List"
     });
 });
 

@@ -46,9 +46,15 @@
           <h5>Navigate</h5>
           <ul class="list-unstyled">
             <li><a href="/" class="text-dark">Home Page</a></li>
+            <li><a href="/mealkits" class="text-dark">Mealkits</a></li>
+            <% if (typeof user !== "undefined") { %>
+              <li><a class="text-dark" href=<%=user.type === "customer" ? "/cart" : "/mealkits/list" %>><%= user.type === "customer" ? "Cart" : "List"  %></a></li>
+              <li><a href="/log-out" class="text-dark">Logout</a></li>
+          <% } else { %>
+
             <li><a href="/sign-up" class="text-dark">Sign Up</a></li>
             <li><a href="/log-in" class="text-dark">Login</a></li>
-            <li><a href="/on-the-menu" class="text-dark">On the Menu</a></li>
+          <% } %>
           </ul>
         </div>
   

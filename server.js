@@ -12,7 +12,7 @@
 const path = require("path");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-
+const session = require("express-session")
 // Set up dotenv
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config/keys.env" })
@@ -31,15 +31,37 @@ app.use(expressLayouts);
 // Set up body-parser
 app.use(express.urlencoded({extended : false}));
 
+// Set up mongoose
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING)
+.then(() => {
+    console.log("Connected to MongoDB.");
+    app.listen(HTTP_PORT, onHttpStart); // start up express server
+})
+.catch(err => {
+    console.log("Unable to connect to MongoDB: ", err);
+})
+
+// Set up express-session
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}))
+
+// Make req.session.user global - accessible anywhere in EJS
+app.use((req, res, next) => {
+    res.locals.user = req.session.user;
+    next();
+})
+
 // Configure/set-up controllers
 const generalController = require("./controllers/generalController");
 const mealkitController = require("./controllers/mealkitController");
-const accountController = require("./controllers/accountController");
 
 // Load controllers into express
 app.use('/', generalController);
-app.use('/', mealkitController);
-app.use('/', accountController);
+app.use('/mealkits', mealkitController);
 
 app.use((req, res) => {
     res.status(404).send("Page Not Found");
@@ -55,5 +77,3 @@ const HTTP_PORT = process.env.PORT || 8080;
 function onHttpStart() {
     console.log("Express http server listening on: " + HTTP_PORT);
 }
-
-app.listen(HTTP_PORT, onHttpStart);

@@ -23,14 +23,23 @@
         </button>
 
         <div class="collapse navbar-collapse ms-4" id="navbarNav">
-            <div class="navbar-text lign-items-center">
+            <div class="navbar-text align-items-center">
                 Get Your Own Mealkit Today!
             </div>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-item nav-link" href="/on-the-menu">On The Menu</a>
-                <a class="nav-item nav-link" href="/">Home</a>
-                <a class="nav-item nav-link" href="/sign-up">Sign Up</a>
-                <a class="nav-item nav-link" href="/log-in">Log In</a>
+            <div class="navbar-nav ms-auto f-flex align-items-center">
+                <% if (typeof user !== "undefined") { %>
+                    <a class="fw-bold text nav-item nav-link" href=<%=user.type === "customer" ? "/cart" : "/mealkits/list" %>>Hello <%= user.firstName %>! </a>
+                    <a class="nav-item nav-link" href="/mealkits">On The Menu</a>
+                    <a class="nav-item nav-link" href="/">Home</a>
+                    <a class="nav-item nav-link" href="/log-out">Logout</a>
+                    <% if (user.type == 'customer') { %> <a href="/cart" class="text-dark d-inline-block nav-item"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <% } else {%> <a href="/mealkits/list" class="text-dark d-inline-block nav-item"><i class="fa-solid fa-screwdriver-wrench"></i></a> <% } %>
+                <% } else { %>
+                    <a class="nav-item nav-link" href="/mealkits">On The Menu</a>
+                    <a class="nav-item nav-link" href="/">Home</a>
+                    <a class="nav-item nav-link" href="/sign-up">Sign Up</a>
+                    <a class="nav-item nav-link" href="/log-in">Log In</a>
+                <% } %>
             </div>
         </div>
     </div>

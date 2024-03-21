@@ -1,7 +1,7 @@
 {
-  "name": "assignment2",
+  "name": "assignment4",
   "version": "1.0.0",
-  "description": "WEB322NEE Assignment 2, making the website responsive, adding on-the-menu, login/signup pages.",
+  "description": "WEB322NEE Assignment 4, mongoDB, mongoose and password management.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,9 +17,12 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^8.1.1",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "express-ejs-layouts": "^2.5.1"
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.2.2"
   }
 }
