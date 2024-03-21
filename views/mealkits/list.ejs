@@ -1,0 +1,25 @@
+<!--/*************************************************************************************
+* WEB322 - 2241 Project
+* I declare that this assignment is my own work in accordance with the Seneca Academic
+* Policy. No part of this assignment has been copied manually or electronically from
+* any other source (including web sites) or distributed to other students.
+*
+* Student Name  : Emily Fagin
+* Student ID    : efagin (139498224)
+* Course/Section: WEB322/NEE
+*
+**************************************************************************************/-->
+<div class="bkg-icons"> <!--TODO: later develop a background of icons, with some animation-->
+    <div id="welcome">
+        <% if (typeof user === "undefined") { %>
+            <h1>Log-in to view this page!<h1>
+        <% } else { %>
+            <h1>Hi <%= user.firstName %>,<h1>
+            <% if (user.type === "dataClerk") { %>
+                <h1>Welcome to List!<h1>
+            <% } else { %>
+                <h1>You are a customer, shouldn't access this!<h1>
+            <% } %>
+        <% } %>
+    </div>
+ </div>

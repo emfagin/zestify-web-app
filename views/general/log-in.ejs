@@ -1,0 +1,58 @@
+<!--/*************************************************************************************
+* WEB322 - 2241 Project
+* I declare that this assignment is my own work in accordance with the Seneca Academic
+* Policy. No part of this assignment has been copied manually or electronically from
+* any other source (including web sites) or distributed to other students.
+*
+* Student Name  : Emily Fagin
+* Student ID    : efagin (139498224)
+* Course/Section: WEB322/NEE
+*
+**************************************************************************************/-->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 card">
+            <div class="card-body">
+                <h2 class="card-title text-center">Welcome Back!</h2>
+                <form method="post" action="/log-in">
+
+                    <div class="container d-flex justify-content-center align-items-center py-2">
+                        <div class="btn-group text-center" role="group" aria-label="Toggle Button Group">
+                            <input type="radio" id="btn-off" name="userType" value='customer' class="btn-check" autocomplete="off">
+                            <label class="btn user-type-btn" for="btn-off">Customer</label>
+                            
+                            <input type="radio" id="btn-on" name="userType" value='dataClerk' class="btn-check" autocomplete="off" checked>
+                            <label class="btn user-type-btn" for="btn-on">Data Clerk</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3"> <!--Email-->
+                        <label for="email" class="form-label"><span class="text-danger">*</span>Email</label>
+                        <input type="text" class="form-control" value="<%= values.email %>" id="email" name="email" />
+                    </div>
+                    
+                    <% if (errors.email) { %> <!-- Email Error Message -->
+                        <div class="mb-3 text-danger" id="errorMessage"> <%= errors.email %> </div>
+                    <% } %>
+
+                    <div class="mb-3"> <!--Password-->
+                        <label for="password" class="form-label"><span class="text-danger">*</span>Password</label>
+                        <input type="text" class="form-control" id="password" name="password" />
+                    </div>
+
+                    <% if (errors.password) { %> <!-- Password Error Message -->
+                        <div class="mb-3 text-danger" id="errorMessage"> <%= errors.password %> </div>
+                    <% } %>
+
+                    <!--Submission Button-->
+                    <button type="submit" class="btn submit-info w-100">Log In</button>
+
+                    <% if (errors.err) { %> <!-- Other, User-RelatedError Message -->
+                        <div class="mb-3 text-danger" id="errorMessage"> <%= errors.err %> </div>
+                    <% } %>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
