@@ -1,0 +1,91 @@
+.box{
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+    display:flex;
+    justify-content: flex-end;
+}
+
+.box .group{
+    padding: 10px 0 10px 0;
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+.iconContainer{
+    display:flex;
+    gap: 0.5em;
+    font-size:3em;
+    width: 200vw;
+    animation: animate 80s linear infinite;
+    &.paused {
+        animation-play-state: paused;
+    }
+}
+
+.iconContainer i{
+    cursor: default;
+    user-select: none;
+    transition: 0.4s;
+    color: rgba(26, 179, 72, 0.49);
+    opacity:0.35;
+    -webkit-text-stroke: 1px;
+}
+
+.iconContainer i.highlight{
+    transition:0s;
+    color:rgb(229, 79, 65);
+    -webkit-text-stroke: 1px transparent;
+    opacity: 1;
+    text-shadow: 0 0 120px rgb(250, 121, 61);
+}
+
+@keyframes animate{
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100vw, 0);
+    }
+}
+
+@keyframes animate2{
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(100vw, 0);
+    }
+}
+
+.iconContainer:nth-child(even) {
+    animation: animate2 80s linear infinite;
+    &.paused {
+        animation-play-state: paused;
+    }
+}
+
+.foreground-content{
+    overflow: hidden;
+    margin: 0% 5% 5% 5%;
+    position: relative;
+    top: -1000\px;
+    left: 20px;
+    z-index: 2;
+}
+
+background-content{
+    position: fixed; /* Use fixed positioning to keep background content fixed */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Set lower z-index for background content */
+    width: 100%;
+    height: 100%;
+}
+
+.together{
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+}

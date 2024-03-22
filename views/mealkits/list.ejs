@@ -9,17 +9,83 @@
 * Course/Section: WEB322/NEE
 *
 **************************************************************************************/-->
-<div class="bkg-icons"> <!--TODO: later develop a background of icons, with some animation-->
-    <div id="welcome">
-        <% if (typeof user === "undefined") { %>
-            <h1>Log-in to view this page!<h1>
-        <% } else { %>
-            <h1>Hi <%= user.firstName %>,<h1>
-            <% if (user.type === "dataClerk") { %>
-                <h1>Welcome to List!<h1>
-            <% } else { %>
-                <h1>You are a customer, shouldn't access this!<h1>
-            <% } %>
-        <% } %>
+<div class="together">
+    <div class="background-content">
+       <div class="box">
+            <div class="group">
+
+            </div>
+       </div>
     </div>
- </div>
+    <div class="foreground-content">
+        <div id="welcome">
+            <% if (typeof user === "undefined") { %>
+                <h1>Log-in to view this page!<h1>
+            <% } else { %>
+                <h1>Hi <%= user.firstName %>,<h1>
+                <% if (user.type === "dataClerk") { %>
+                    <h1>Welcome to List!<h1>
+                <% } else { %>
+                    <h1>You are a customer, shouldn't access this!<h1>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<script>
+    icons = ["fa-pizza-slice", "fa-lemon", "fa-fish", "fa-martini-glass-citrus", "fa-pepper-hot", "fa-cookie", "fa-bread-slice", "fa-carrot",
+"fa-wheat-awn", "fa-stroopwafel", "fa-shrimp", "fa-hotdog", "fa-burger", "fa-bacon", "fa-egg", "fa-cheese", "fa-bowl-food", "fa-apple-whole",
+"fa-ice-cream", "fa-blender", "fa-utensils", "fa-kitchen-set", "fa-box-open", "fa-mug-saucer"];
+let currH = 0;
+const group = document.querySelector('.group');
+const foreDiv = document.querySelector('.foreground-content');
+
+window.addEventListener ("load", (event) => {
+    generateIcons();
+    
+    window.addEventListener("resize", regenerateIcons);
+})    
+
+function generateIcons(){
+
+    const currH = foreDiv.offsetHeight;
+    const numRows = Math.ceil(currH / 50);
+    console.log(numRows, currH, document.querySelector('.together').offsetHeight);
+
+    for(let i = 0; i < numRows; i++){
+        const containerId = `iconContainer${i}`;
+        const container = document.createElement('div');
+        container.className = 'iconContainer';
+        container.id = containerId;
+        group.appendChild(container);
+        addIcons(containerId);
+    }
+    
+}
+function addIcons(containerId){
+    const iconContainer = document.getElementById(containerId);
+    for (let i = 0; i < 80; i++){
+        const icon = document.createElement('i');
+        icon.className = ("icon fa-solid " + randomIcon(icons));
+        icon.addEventListener("mouseover", () =>{
+            icon.classList.add("highlight");
+            iconContainer.classList.toggle("paused")
+        });
+        icon.addEventListener("mouseleave", () =>{
+            icon.classList.remove("highlight");
+            iconContainer.classList.toggle("paused")
+        });
+        iconContainer.appendChild(icon);
+    }
+}
+
+function randomIcon(values){
+    const randomIndex = Math.floor(Math.random() * values.length);
+    return values[randomIndex];
+}
+
+function regenerateIcons(){
+    const newH = foreDiv.offsetHeight;
+}
+</script>

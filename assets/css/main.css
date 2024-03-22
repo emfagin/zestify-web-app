@@ -15,14 +15,7 @@ body{
     font-family: "Quicksand", sans-serif;
     font-weight: 400;
     font-style: normal;
-    background-color: rgb(254, 194, 122);
-}
-
-.bkg-icons{
-    overflow: hidden;
-    position: relative;
-    margin-right:5%;
-    margin-left:5%;
+    background-color: #ffffff;
 }
 
 #navbar{
@@ -66,7 +59,7 @@ body{
     margin-top: 2%;
     padding:3%;
     /* background: linear-gradient(135deg, rgba(33, 230, 190, 0.8), rgba(55, 121, 159, 0.8) 30%, rgba(242, 104, 44, 0.805) 70%); */
-    background-color: rgb(0, 158, 182);
+    background-color: rgb(107, 199, 213);
     border-radius: 10px;
 }
 
@@ -94,8 +87,9 @@ body{
 }
 
 footer{
-    margin-top:10px;
     background-color: rgb(172, 200, 168);
+    margin-top: auto; /* Push footer to the bottom of the flex container */
+
 }
 
 .menu-title{
