@@ -1,0 +1,55 @@
+<div
+  class="card mealkit-card h-100 d-flex flex-column shadow p-3 rounded border-0"
+>
+  <img id="mk-imageUrl"
+    src="/mealkit-imgs/<%- imageUrl %>"
+    class="card-img-top"
+    alt="A grid of menu items"
+  />
+  <div class="mb-0 card-body flex-grow-1 d-flex flex-column text-start">
+    <h5 class="font-weight-bold text-center card-title"><strong><span id="mk-title"><%= title %></span></strong></h5>
+    <dl class="text-start mb-0">
+      <!--Mealkit Info-->
+      <dt>Includes</dt>
+      <dd id="mk-includes"><%= includes %></dd>
+      <dt>Description</dt>
+      <dd id="mk-description"><%= description %></dd>
+      <div class="row">
+        <div class="col-sm-8">
+          <dt>Category</dt>
+          <dd id="mk-category"><%= category %></dd>
+        </div>
+        <div class="col-sm-4">
+          <dt>Price</dt>
+          <dd id="mk-price"><%= price %></dd>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <dt>Cooking Time</dt>
+          <dd id="mk-cookingTime"><%= cookingTime %></dd>
+        </div>
+        <div class="col-sm-4">
+          <dt>Servings</dt>
+          <dd id="mk-servings"><%= servings %></dd>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <dt class="">Featured?</dt>
+          <dd id="mk-featuredMealKit"><%= (featuredMealKit ? "Yes" : "No") %></dd>
+        </div>
+      </div>
+    </dl>
+  </div>
+  <% if (typeof edit !== 'undefined' && typeof remove !== 'undefined') {%>
+      <div class="mt-0 row justify-content-center">
+        <a href="<%= edit %>" style="width: 100px;" class="col-xs-6 btn btn-price accent mt-0 me-2 ">
+            <strong>Edit</strong>
+        </a>
+        <a href="<%= remove %>" style="width: 100px;" class="col-xs-6 btn btn-price accent mt-0">
+            <strong>Remove</strong>
+        </a>
+      </div>
+    <% } %>
+</div>

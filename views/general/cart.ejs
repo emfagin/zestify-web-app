@@ -10,16 +10,8 @@
 *
 **************************************************************************************/-->
 <div class="bkg-icons"> <!--TODO: later develop a background of icons, with some animation-->
-    <div id="welcome">
-        <% if (typeof user === "undefined") { %>
-            <h1>Log-in to view this page!<h1>
-        <% } else { %>
-            <h1>Hi <%= user.firstName %>,<h1>
-            <% if (user.type === "customer") { %>
-                <h1>Welcome to the Cart!<h1>
-            <% } else { %>
-                <h1>You are a clerk, shouldn't access this!<h1>
-            <% } %>
-        <% } %>
+    <div class="float-container">
+        <h2>Your Cart</h2>
+        <p>Items will go here...</p>
     </div>
  </div>

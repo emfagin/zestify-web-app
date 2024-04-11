@@ -21,14 +21,14 @@
                             <input type="radio" id="btn-off" name="userType" value='customer' class="btn-check" autocomplete="off">
                             <label class="btn user-type-btn" for="btn-off">Customer</label>
                             
-                            <input type="radio" id="btn-on" name="userType" value='dataClerk' class="btn-check" autocomplete="off" checked>
+                            <input type="radio" id="btn-on" name="userType" value='clerk' class="btn-check" autocomplete="off" checked>
                             <label class="btn user-type-btn" for="btn-on">Data Clerk</label>
                         </div>
                     </div>
 
                     <div class="mb-3"> <!--Email-->
                         <label for="email" class="form-label"><span class="text-danger">*</span>Email</label>
-                        <input type="text" class="form-control" value="<%= values.email %>" id="email" name="email" />
+                        <input type="text" class="form-control" value="<%= values.email %>" id="email" name="email" autocomplete="username"/>
                     </div>
                     
                     <% if (errors.email) { %> <!-- Email Error Message -->
@@ -37,7 +37,7 @@
 
                     <div class="mb-3"> <!--Password-->
                         <label for="password" class="form-label"><span class="text-danger">*</span>Password</label>
-                        <input type="text" class="form-control" id="password" name="password" />
+                        <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" />
                     </div>
 
                     <% if (errors.password) { %> <!-- Password Error Message -->

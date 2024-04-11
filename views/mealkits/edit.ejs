@@ -1,0 +1,129 @@
+<div class="bkg-icons">
+    <div class="container float-container my-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+            <%- include("../partials/mealkit-info", {...mealkit._doc})%>
+        </div>
+        <div class="col-md-6 card">
+          <div class="card-body">
+            <h2 class="card-title text-center">Edit Mealkit Info Below:</h2>
+            <form
+              method="post"
+              action="/mealkits/edit/<%= id %>"
+              enctype="multipart/form-data"
+            >
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" name="title" id="title" class="form-control" value="<%=mealkit.title%>" />
+            </div>
+
+            <div class="mb-3">
+              <label for="includes" class="form-label">Includes</label>
+              <input type="text" name="includes" id="includes" class="form-control" value="<%=mealkit.includes%>" />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea name="description" id="description" class="form-control"><%=mealkit.description%></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <input type="text" name="category" id="category" class="form-control" value="<%=mealkit.category%>" />
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" name="price" id="price" step="0.01" min="0.01" class="form-control" value="<%=mealkit.price%>" />
+            </div>
+            <div class="mb-3">       
+              <label for="cookingTime" class="form-label">Cooking Time (minutes)</label>
+              <input type="number" name="cookingTime" id="cookingTime" min="1" class="form-control" value="<%=mealkit.cookingTime%>" />
+            </div>
+            <div class="mb-3">
+              <label for="servings" class="form-label">Servings</label>
+              <input type="number" name="servings" id="servings" min="1" step="1" class="form-control" value="<%=mealkit.servings%>" />
+            </div>
+            <div class="mb-3">
+              <label for="changeImageCheckbox" class="form-label">Change Image? </label>
+              <input type="checkbox" name="changeImageCheckbox" id="changeImageCheckbox" class="form-check-input" />
+            </div>
+            <div class="mb-3" id="imageInputDiv" style="display: none;">
+              <label for="imageUrl" class="form-label">Image URL</label>
+              <input type="file" name="imageUrl" onChange="loadFile(event)" accept="image/jpg, image/png, image/gif, image/jpeg" id="imageUrl" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label for="featuredMealKit" class="form-check-label">Featured Meal Kit</label>
+              <input type="checkbox" name="featuredMealKit" id="featuredMealKit" class="form-check-input" <% if (mealkit.featuredMealKit) { %> checked <% } %>/>
+            </div>
+            
+              <% if (typeof error != 'undefined') { %>
+                  <div class="mb-3 text-danger" id="errorMessage"> <%= error %> </div>
+              <% } %>
+
+              <input type="submit" class="btn submit-info w-100"/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    
+    var loadFile = function(event) {
+      // if (typeof event.target.files[0] != "undefined"){
+        var output = document.getElementById("mk-imageUrl");
+        try {
+            output.src = URL.createObjectURL(event.target.files[0]);
+        } catch (error) {
+            try {
+                output.src = URL.createObjectURL(event.files[0]);
+            } catch (error) {
+                console.error("Error creating object URL:", error);
+            }
+        }        
+          output.onload = function() {
+          URL.revokeObjectURL(output.src);
+        // }
+      }
+    }
+    
+    document.addEventListener("DOMContentLoaded", function() {
+
+      const textElements = [ "title", "includes", "description", "category", "price", "cookingTime", "servings", "featuredMealKit"];
+      textElements.forEach((item) => {
+        const input = document.getElementById(`${item}`);
+        const display = document.getElementById(`mk-${item}`);
+
+        input.addEventListener("change", function() {
+          if (item === 'featuredMealKit') display.innerText = input.checked ? "Yes" : "No";
+          else display.innerText = input.value;
+        })
+      })
+      const changeImageCheckbox = document.getElementById("changeImageCheckbox");
+      const imageInputDiv = document.getElementById("imageInputDiv");
+      const imageUrlInput = document.getElementById("imageUrl");
+      const originalImageUrl = "/mealkit-imgs/<%- mealkit.imageUrl %>%>"; // Store the original image URL
+
+      changeImageCheckbox.addEventListener("change", function(event) {
+        if (changeImageCheckbox.checked) {
+          imageInputDiv.style.display = "block"; // Show the image input
+          if (imageUrlInput.files.length > 0) loadFile(imageUrlInput);
+        } else {
+          imageInputDiv.style.display = "none"; // Hide the image input
+          // Revert the image preview to the original URL
+          document.getElementById("mk-imageUrl").src = originalImageUrl;
+      }
+    });
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+        const changeImageCheckbox = document.getElementById("changeImageCheckbox");
+        const imageUrlInput = document.getElementById("imageUrl");
+
+        if (changeImageCheckbox.checked && imageUrlInput.files.length === 0) {
+            // Prevent form submission
+            event.preventDefault();
+            alert("Please select an image file, or uncheck \"Change Image\".");
+        }
+    });
+  });
+  </script>

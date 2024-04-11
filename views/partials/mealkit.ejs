@@ -9,11 +9,34 @@
 * Course/Section: WEB322/NEE
 *
 **************************************************************************************/-->
-<div class="card h-100 d-flex flex-column">
-    <img src="/mealkit-imgs/<%- imageUrl %>" class="card-img-top mealkit-img" alt="A grid of menu items">
-    <div class="card-body flex-grow-1 d-flex flex-column">
-        <h5 class="card-title"><%= title %></h5>
-        <p class="card-text"><%= description %></p>
-        <p class="card-text mt-auto"><strong><%= price %></strong></p>
+<div
+  class="card mealkit-card h-100 d-flex flex-column shadow p-3 rounded border-0"
+>
+  <img
+    src="/mealkit-imgs/<%- imageUrl %>"
+    class="card-img-top"
+    alt="A grid of menu items"
+  />
+  <div class="card-body flex-grow-1 d-flex flex-column">
+    <h5 class="card-title"><%= title %></h5>
+    <p class="card-text"><%= description %></p>
+    <div class="d-grid gap-2 col-3 mx-auto">
+      <% if (typeof edit === 'undefined' || typeof remove === 'undefined') {%>
+        <button type="button" class="btn btn-price accent mt-auto">
+          <strong>$<%= price %></strong>
+        </button>
+       <% } else { %>
+        <a href="<%= edit %>">
+            <button type="button" class="btn btn-price accent mt-auto">
+                <strong>Edit</strong>
+              </button>    
+        </a>
+        <a href="<%= remove %>">
+            <button type="button" class="btn btn-price accent mt-auto">
+                <strong>Remove</strong>
+              </button>    
+        </a>
+        <% } %>
     </div>
+  </div>
 </div>

@@ -1,0 +1,41 @@
+const express = require("express");
+const router = express.Router();
+const {mealkitModel} = require("../models/mealkitModel");
+const mealkitUtil = require("../modules/mealkit-util");
+const {authenticateUser, displayError, displayError500 } = require("../modules/authentication");
+
+router.get("/mealkits", (req, res) => {
+  authenticateUser(req, res, "Load Data", true).then((isAllowed) => {
+	  if (isAllowed) {
+		mealkitModel.countDocuments()
+		.then((count) => {
+			if (count === 0) { // if no documents
+				mealkitModel.insertMany(mealkitUtil.getAllMealKits())
+				.then(() => {
+					res.render("general/message", {
+						// success loading data
+						title: "Load Data",
+						message: "Added meal kits to the database.",
+					});
+				})
+				.catch((err) => { // error loading data
+					console.error(err); // log error
+					displayError500(res, "Load Data", "Failed loading data.", "Back to List", "/mealkits/list");
+				});
+			} else {
+				displayError(res, "Load Data", "Meal kits have already been added to database.", 200, "Success", "Back to List", "/mealkits/list");
+				res.render("general/message", {
+					title: "Load Data",
+					message: "Meal kits have already been added to the database.",
+				});
+			}
+		})
+		.catch((err) => {
+			console.error(err); // log error
+			displayError500(res, "Load Data", "Error counting documents from database.");
+		})
+	}		
+  });
+});
+
+module.exports = router; // export router

@@ -32,7 +32,7 @@
                     <a class="nav-item nav-link" href="/mealkits">On The Menu</a>
                     <a class="nav-item nav-link" href="/">Home</a>
                     <a class="nav-item nav-link" href="/log-out">Logout</a>
-                    <% if (user.type == 'customer') { %> <a href="/cart" class="text-dark d-inline-block nav-item"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <% if (!user.isClerk) { %> <a href="/cart" class="text-dark d-inline-block nav-item"><i class="fa-solid fa-cart-shopping"></i></a>
                     <% } else {%> <a href="/mealkits/list" class="text-dark d-inline-block nav-item"><i class="fa-solid fa-screwdriver-wrench"></i></a> <% } %>
                 <% } else { %>
                     <a class="nav-item nav-link" href="/mealkits">On The Menu</a>

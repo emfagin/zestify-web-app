@@ -13,12 +13,17 @@ const path = require("path");
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session")
+const fileUpload = require("express-fileupload");
+
 // Set up dotenv
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config/keys.env" })
 
 // Set up express
 const app = express();
+
+// Set up express-fileupload.
+app.use(fileUpload());
 
 // Set up public folder - make "/assets" public
 app.use(express.static(path.join(__dirname, "/assets"))); // Make assets folder static (or public), accessible
@@ -46,7 +51,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING)
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
 }))
 
 // Make req.session.user global - accessible anywhere in EJS
@@ -58,10 +63,12 @@ app.use((req, res, next) => {
 // Configure/set-up controllers
 const generalController = require("./controllers/generalController");
 const mealkitController = require("./controllers/mealkitController");
+const loadDataController = require("./controllers/loadDataController");
 
 // Load controllers into express
 app.use('/', generalController);
 app.use('/mealkits', mealkitController);
+app.use('/load-data', loadDataController);
 
 app.use((req, res) => {
     res.status(404).send("Page Not Found");

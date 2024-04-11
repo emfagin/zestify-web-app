@@ -1,0 +1,49 @@
+<div class="bkg-icons">
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Enter mealkit info below:</h2>
+          <form
+            method="post"
+            action="/mealkits/add"
+            enctype="multipart/form-data"
+          >
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" id="title" class="form-control" required />
+
+            <label for="includes" class="form-label">Includes</label>
+            <input type="text" name="includes" id="includes" class="form-control" required />
+
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" required></textarea>
+            
+            <label for="category" class="form-label">Category</label>
+            <input type="text" name="category" id="category" class="form-control" required />
+            
+            <label for="price" class="form-label">Price</label>
+            <input type="number" name="price" id="price" step="0.01" min="0.01" class="form-control" required />
+            
+            <label for="cookingTime" class="form-label">Cooking Time (minutes)</label>
+            <input type="number" name="cookingTime" id="cookingTime" min="1" class="form-control" required />
+            
+            <label for="servings" class="form-label">Servings</label>
+            <input type="number" name="servings" id="servings" min="1" class="form-control" required />
+            
+            <label for="imageUrl" class="form-label">Image URL</label>
+            <input type="file" name="imageUrl" accept="image/jpg, image/png, image/gif, image/jpeg" id="imageUrl" class="form-control" required />
+            
+            <label for="featuredMealKit" class="form-check-label">Featured Meal Kit</label>
+            <input type="checkbox" name="featuredMealKit" id="featuredMealKit" class="form-check-input" />
+
+            <% if (typeof error != 'undefined') { %>
+                <div class="mb-3 text-danger" id="errorMessage"> <%= error %> </div>
+            <% } %>
+
+            <input type="submit" class="btn submit-info w-100"/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<!--/*************************************************************************************
+* WEB322 - 2241 Project
+* I declare that this assignment is my own work in accordance with the Seneca Academic
+* Policy. No part of this assignment has been copied manually or electronically from
+* any other source (including web sites) or distributed to other students.
+*
+* Student Name  : Emily Fagin
+* Student ID    : efagin (139498224)
+* Course/Section: WEB322/NEE
+*
+**************************************************************************************/-->
+<div class="bkg-icons">
+  <div class=<%= (typeof errorCode !== 'undefined' && errorCode !== 200) ? 'error-message' : 'float-container' %>>
+    <% if (typeof errorCode !== 'undefined' && typeof errorDesc !== 'undefined' && errorCode !== 200) { %>
+        <h3><%- errorCode%>: <%- errorDesc%></h3>
+    <% } %>
+    <h1><%= message%></h1>
+    <a class="mt-2" href=<%= typeof buttonUrl != "undefined" ? buttonUrl : "javascript:history.back()" %>>
+      <button type="button" class="btn btn-light border-dark btn-lg"><%= typeof buttonText != "undefined" ? buttonText : "Go Back" %></button>
+    </a>
+  </div>
+</div>

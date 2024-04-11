@@ -11,7 +11,7 @@
 **************************************************************************************/-->
 <div class="bkg-icons">
     
-    <div class="menu-title">
+    <div class="float-container">
         <h2>On the Menu:</h2>
         <h5>Browse All Mealkits Available in Our Menu Today, By Category!</h5>
     </div>
@@ -19,12 +19,12 @@
     <% if (typeof categories !== "undefined" && categories.length > 0) { %>
         <div class="container mt-3">
             <% categories.forEach(category => { %>
-                <div class="row mk-category">
+                <div class="row mealkits-container">
                     <h2><%= category.categoryName %></h2>
                     <% if (category.mealkits.length > 0) { %>
                         <% category.mealkits.forEach(mk => { %>
                             <div class="col-lg-6 col-md-12 mb-4">
-                                <%- include("../partials/mealkit", mk)%>
+                                <%- include("../partials/mealkit", {...mk._doc})%>
                             </div>
                             <% }); %>
                     <% } else { %>
